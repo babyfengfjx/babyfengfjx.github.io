@@ -101,7 +101,7 @@
 <h1 id="过程注意点"><a href="#过程注意点" class="headerlink" title="过程注意点"></a>过程注意点</h1><h2 id="创建博客要注意什么？"><a href="#创建博客要注意什么？" class="headerlink" title="创建博客要注意什么？"></a>创建博客要注意什么？</h2><h3 id="是不是随便什么MD文件都可以发布成博客？"><a href="#是不是随便什么MD文件都可以发布成博客？" class="headerlink" title="是不是随便什么MD文件都可以发布成博客？"></a>是不是随便什么MD文件都可以发布成博客？</h3><blockquote>
 <p>理论上都是可以的，不过hexo在发布文章的时候对MD文件有相关的一些约定，开头的时候最好按照如下方式设置，以便hexo能够读取文章的相关信息：</p>
 </blockquote>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 图片测试</span><br><span class="line">date: 2019-09-15 10:52:05</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 图片测试</span><br><span class="line">date: 2019-09-15 10:52:05</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
 <p> 然后再在下方使用markdown语法进行写作即可。</p>
 <ul>
@@ -109,13 +109,13 @@
 <ol>
 <li>使用hexo创建新文章的文件；</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"新文章写作"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"新文章写作"</span></span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>使用typora打开文件进行编辑写作；</li>
 <li>写完后直接进行发布</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g  ---重新生成文章</span><br><span class="line">hexo d  ---发布到github</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g  ---重新生成文章</span><br><span class="line">hexo d  ---发布到github</span><br></pre></td></tr></table></figure>
 
 
 
@@ -129,17 +129,17 @@
 <li>删除所有hexo项目；</li>
 <li>重新初始化hexo项目</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init --- 初始化前要保证当前文件夹为空</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init --- 初始化前要保证当前文件夹为空</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>开启post_asset_folder模式（参考如下设置_config.yml文件）</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Writing</span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: <span class="literal">false</span></span><br><span class="line">post_asset_folder: <span class="literal">true</span>  ---开启此项设置</span><br><span class="line">relative_link: <span class="literal">false</span></span><br><span class="line">future: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Writing</span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: <span class="literal">false</span></span><br><span class="line">post_asset_folder: <span class="literal">true</span>  ---开启此项设置</span><br><span class="line">relative_link: <span class="literal">false</span></span><br><span class="line">future: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <ol start="4">
 <li>安装图片插件(我仅仅是安装如下链接的插件就解决了问题，如果按照下方还解决不了问题，可以参考<a href="https://blog.csdn.net/xjm850552586/article/details/84101345" target="_blank" rel="noopener">这篇文章</a>看是否能解决)</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
 <li>然后设置typora的图片位置为文档的同名文件夹下</li>
@@ -150,13 +150,13 @@
 <li>此时就可以在typora中按正常过程写文章了，图片可以截屏后直接粘贴就OK，不用那么麻烦先放到指定位置，然后再去引用了。</li>
 <li>写完文章后，保存就可以，然后直接进行生成和发布即可</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://babyfengfjx.github.io/2019/09/15/Hexo-github搭建个人博客过程/" data-id="ck0kh7xkc00009cxh8srldcvj"
+      <a data-url="http://babyfengfjx.github.io/2019/09/15/Hexo-github搭建个人博客过程/" data-id="ck0kj0tzo0000fcxhkmvtif0k"
          class="article-share-link">Share</a>
       
     </footer>
