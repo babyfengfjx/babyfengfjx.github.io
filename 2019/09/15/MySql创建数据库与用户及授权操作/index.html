@@ -7,6 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
+    MySql创建数据库与用户及授权操作 |
     
     babyfengfjx&#39;blog</title>
   
@@ -21,43 +22,8 @@
 </html>
 <body>
 <main class="content">
-  <section class="jumbotron">
-  <div class="video">
-    
-      <div class="video-frame">
-        <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
-      </div>
-    
-    <div class="video-media">
-      <video playsinline="" autoplay="" loop="" muted="" data-autoplay=""
-             poster="/images/ocean/ocean.png" x5-video-player-type="h5">
-        <source src="/images/ocean/ocean.mp4" type="video/mp4">
-        <source src="/images/ocean/ocean.ogv" type="video/ogg">
-        <source src="/images/ocean/ocean.webm" type="video/webm">
-        <p>Your user agent does not support the HTML5 Video element.</p>
-      </video>
-      <div class="video-overlay"></div>
-    </div>
-    <div class="video-inner text-center text-white">
-      <h1><a href="/">babyfengfjx&#39;blog</a></h1>
-      <p></p>
-      <div><img src="/images/hexo-inverted.svg" class="brand" alt="babyfengfjx&#39;blog"></div>
-    </div>
-    <div class="video-learn-more">
-      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
-    </div>
-  </div>
-</section>
-
-<div id="landingpage">
   <section class="outer">
-  <article class="articles">
-    
-    <h1 class="page-type-title"></h1>
-
-    
-      
-        
+  
 
 <article id="post-MySql创建数据库与用户及授权操作" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
@@ -66,9 +32,9 @@
       <header class="article-header">
         
   
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/09/15/MySql创建数据库与用户及授权操作/">MySql创建数据库与用户及授权操作</a>
-    </h2>
+    <h1 class="article-title" itemprop="name">
+      MySql创建数据库与用户及授权操作
+    </h1>
   
   
 
@@ -86,6 +52,14 @@
         
       </div>
     
+
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
 
     
 
@@ -137,138 +111,29 @@
   </div>
 
   
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/09/15/Hexo-github搭建个人博客过程/" class="article-nav-link">
+        <strong class="article-nav-caption">Olde posts</strong>
+        <div class="article-nav-title">Hexo+github搭建个人博客过程</div>
+      </a>
+    
+  </nav>
 
+
+  
+
+  
+    
   
 
 </article>
 
 
 
-      
-        
-
-<article id="post-Hexo-github搭建个人博客过程" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/09/15/Hexo-github搭建个人博客过程/">Hexo+github搭建个人博客过程</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/09/15/Hexo-github搭建个人博客过程/" class="article-date">
-  <time datetime="2019-09-15T03:41:26.000Z" itemprop="datePublished">2019-09-15</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <h1 id="参考博文"><a href="#参考博文" class="headerlink" title="参考博文"></a>参考博文</h1><p>整个搭建过程可以参考如下博文：</p>
-<p><a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">搭建教程请点击</a></p>
-<h1 id="过程注意点"><a href="#过程注意点" class="headerlink" title="过程注意点"></a>过程注意点</h1><h2 id="创建博客要注意什么？"><a href="#创建博客要注意什么？" class="headerlink" title="创建博客要注意什么？"></a>创建博客要注意什么？</h2><h3 id="是不是随便什么MD文件都可以发布成博客？"><a href="#是不是随便什么MD文件都可以发布成博客？" class="headerlink" title="是不是随便什么MD文件都可以发布成博客？"></a>是不是随便什么MD文件都可以发布成博客？</h3><blockquote>
-<p>理论上都是可以的，不过hexo在发布文章的时候对MD文件有相关的一些约定，开头的时候最好按照如下方式设置，以便hexo能够读取文章的相关信息：</p>
-</blockquote>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 图片测试</span><br><span class="line">date: 2019-09-15 10:52:05</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p> 然后再在下方使用markdown语法进行写作即可。</p>
-<ul>
-<li><p>个人步骤如下：</p>
-<ol>
-<li>使用hexo创建新文章的文件；</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"新文章写作"</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>使用typora打开文件进行编辑写作；</li>
-<li>写完后直接进行发布</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g  ---重新生成文章</span><br><span class="line">hexo d  ---发布到github</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ul>
-<h3 id="如何使用typora编辑文章，并且正常使用图片？"><a href="#如何使用typora编辑文章，并且正常使用图片？" class="headerlink" title="如何使用typora编辑文章，并且正常使用图片？"></a>如何使用typora编辑文章，并且正常使用图片？</h3><blockquote>
-<p>过程中使用typora编辑发布文字是没有问题的，但是唯独图片没法解决，一直无法正常读取图片，通过对html文件中图片路径的分析，发现每次hexo g 后生成的路径不对，查阅相关资料说是hexo中安装的图片插件有BUG，于是自己按照如下步骤处理一次就成功了。</p>
-</blockquote>
-<ol>
-<li>删除所有hexo项目；</li>
-<li>重新初始化hexo项目</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init --- 初始化前要保证当前文件夹为空</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>开启post_asset_folder模式（参考如下设置_config.yml文件）</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Writing</span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: <span class="literal">false</span></span><br><span class="line">post_asset_folder: <span class="literal">true</span>  ---开启此项设置</span><br><span class="line">relative_link: <span class="literal">false</span></span><br><span class="line">future: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>安装图片插件(我仅仅是安装如下链接的插件就解决了问题，如果按照下方还解决不了问题，可以参考<a href="https://blog.csdn.net/xjm850552586/article/details/84101345" target="_blank" rel="noopener">这篇文章</a>看是否能解决)</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>然后设置typora的图片位置为文档的同名文件夹下</li>
-</ol>
-<p>设置路径：偏好设置》图像》复制到指定路径》目录设置为：“./${filename}”</p>
-<p><img src="/2019/09/15/Hexo-github搭建个人博客过程/1568520933933.png" alt="1568520933933"></p>
-<ol start="6">
-<li>此时就可以在typora中按正常过程写文章了，图片可以截屏后直接粘贴就OK，不用那么麻烦先放到指定位置，然后再去引用了。</li>
-<li>写完文章后，保存就可以，然后直接进行生成和发布即可</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://babyfengfjx.github.io/2019/09/15/Hexo-github搭建个人博客过程/" data-id="ck0kjnqqw0000m4xhadqsei5j"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-
-
-      
-  </article>
-  
-
-  
 </section>
-</div>
-
   <footer class="footer">
   <div class="outer">
     <div class="float-right">
@@ -290,8 +155,8 @@
 
 </main>
 
-  <aside class="sidebar">
-    
+<aside class="sidebar sidebar-specter">
+  
     <button class="navbar-toggle"></button>
 <nav class="navbar">
   
@@ -356,6 +221,21 @@
   <script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
+
+  <script src="/js/tocbot.min.js"></script>
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
 
 
 <script src="/js/ocean.js"></script>
