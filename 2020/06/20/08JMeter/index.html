@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="JMeter基础"><meta name="keywords" content="Jmeter,性能测试"><meta name="author" content="babyfengfjx"><meta name="copyright" content="babyfengfjx"><title>JMeter基础 | babyfengfjx'Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"RPHOC0H5T9","apiKey":"723903e5de5899f6cc4ad96fc50931c1","indexName":"hexo_blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">性能测试基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RT-Response-time"><span class="toc-number">1.1.</span> <span class="toc-text">RT -Response time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%A4%84%E7%90%86%E8%83%BD%E5%8A%9B"><span class="toc-number">1.2.</span> <span class="toc-text">系统处理能力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E7%A7%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">简称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">标准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">并发用户数量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E7%A7%B0-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">** 简称**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">标准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%8E%87"><span class="toc-number">1.4.</span> <span class="toc-text">错误率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%8A%E8%A7%A3%E9%87%8A"><span class="toc-number">1.4.1.</span> <span class="toc-text">** 定义及解释**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86-2"><span class="toc-number">1.4.2.</span> <span class="toc-text">标准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU"><span class="toc-number">1.5.</span> <span class="toc-text">CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%8A%E8%A7%A3%E9%87%8A-1"><span class="toc-number">1.5.1.</span> <span class="toc-text">定义及解释</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://github.com/babyfengfjx/babyfengfjx.github.io/blob/main/pictures/avatar/avatar.jpg?raw=true"></div><div class="author-info__name text-center">babyfengfjx</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">13</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">20</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">10</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">babyfengfjx'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">JMeter基础</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-20</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Jmeter/">Jmeter</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="性能测试基本概念"><a href="#性能测试基本概念" class="headerlink" title="性能测试基本概念"></a>性能测试基本概念</h1><h2 id="RT-Response-time"><a href="#RT-Response-time" class="headerlink" title="RT -Response time"></a>RT -Response time</h2><p>请求响应时间</p>
+<p>从客户端发出请求到得到响应的整个时间</p>
+<p>一般包括网络响应时间+server的响应时间。</p>
+<p>用户接受准则:</p>
+<p>例如2-5-10原则，即按照正常用户体验，如果用户能够在2秒内得到响应，会感觉速度很快，如果2-5秒得到响应，用户感觉系统的响应速度还不多，在5-10秒之内得到响应时，用户会感觉系统的响应速度慢，但是可以接受，超过10秒后还没有响应，用户就会感觉不能够接受。</p>
+<p>不同行业不同业务可接受的响应时间是不同的，一般情况，对于在线实时交易：</p>
+<ul>
+<li><p>互联网企业：500毫秒以下，例如淘宝业务10毫秒左右。</p>
+</li>
+<li><p>金融企业：1秒以下为佳，部分复杂业务3秒以下。</p>
+</li>
+<li><p>保险企业：3秒以下为佳。</p>
+</li>
+<li><p>制造业：5秒以下为佳。</p>
+</li>
+<li><ul>
+<li>阿里云规范</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统处理能力"><a href="#系统处理能力" class="headerlink" title="系统处理能力"></a><strong>系统处理能力</strong></h2><p>系统处理能力是指系统在利用系统硬件平台和软件平台进行信息处理的能力。系统处理能力通过系统每秒钟能够处理的交易数量来评价，交易有两种理解：</p>
+<p>一是业务人员角度的一笔业务过程；</p>
+<p>二是系统角度的一次交易申请和响应过程。</p>
+<p>前者称为业务交易过程，后者称为事务。两种交易指标都可以评价应用系统的处理能力。一般的建议与系统交易日志保持一致，以便于统计业务量或者交易量。系统处理能力指标是技术测试活动中重要指标。</p>
+<h3 id="简称"><a href="#简称" class="headerlink" title="简称"></a><strong>简称</strong></h3><p>一般情况下，用以下几个指标来度量：</p>
+<ul>
+<li><p>HPS（Hits Per Second） ：每秒点击次数，单位是次&#x2F;秒。</p>
+</li>
+<li><p>TPS（Transaction per Second）：系统每秒处理事务数，单位是笔&#x2F;秒。吞吐量。</p>
+<p>不可分割的。要么完全成功，要么完全失败。</p>
+</li>
+<li><p>QPS（Query per Second）：系统每秒处理查询次数，单位是次&#x2F;秒。</p>
+<p>对于互联网业务中，如果某些业务有且仅有一个请求连接，那么TPS&#x3D;QPS&#x3D;HPS，</p>
+<p>一般情况下用TPS来衡量整个业务流程，用QPS来衡量接口查询次数，用HPS来表示对服务器点击请求。</p>
+</li>
+</ul>
+<p>每秒钟处理完的事务次数，一般TPS是对整个系统来讲的。一个应用系统1s能完成多少事务处理，一个事务在分布式处理中，可能会对应多个请求，对于衡量单个接口服务的处理能力，用QPS比较多。</p>
+<h3 id="标准"><a href="#标准" class="headerlink" title="标准"></a><strong>标准</strong></h3><p>无论TPS、QPS、HPS,此指标是衡量系统处理能力非常重要的指标，越大越好，根据经验，一般情况下：</p>
+<ul>
+<li><p>金融行业：1000TPS~9000TPS，不包括互联网化的活动</p>
+</li>
+<li><p>保险行业：100TPS~1000TPS，不包括互联网化的活动</p>
+</li>
+<li><p>制造行业：10TPS~50TPS</p>
+</li>
+<li><p>互联网电子商务：10000TPS~100000TPS,例如天猫5万TPS</p>
+</li>
+<li><p>互联网中型网站：100TPS~500TPS</p>
+</li>
+<li><p>互联网小型网站: 50TPS~100TPS</p>
+</li>
+</ul>
+<h2 id="并发用户数量"><a href="#并发用户数量" class="headerlink" title="并发用户数量"></a>并发用户数量</h2><p>常见的错误理解:</p>
+<p>使用系统的全部用户数量(注册用户)</p>
+<p>使用系统的全部在线用户数量</p>
+<p>正确理解</p>
+<p>并发用户数指在同一时刻内，打开系统并进行业务操作的用户数量，并发用户数对于长连接(数据库连接时长连接，web请求时短连接)系统来说最大并发用户数即是系统的并发接入能力。对于短连接系统而言最大并发用户数并不等于系统的并发接入能力，而是与系统架构、系统处理能力等各种情况相关</p>
+<p>http:请求只能由客户端发出，服务端被动响应。</p>
+<h3 id="简称-1"><a href="#简称-1" class="headerlink" title="** 简称**"></a>** 简称**</h3><p>Virtual User: VU</p>
+<h3 id="标准-1"><a href="#标准-1" class="headerlink" title="标准"></a><strong>标准</strong></h3><p>一般情况下，性能测试是将系统处理能力容量测出来，而不是测试并发用户数，除了服务器长连接可能影响并发用户数外，系统处理能力不完全受并发用户数影响，可以用最小的用户数将系统处理能力容量测试出来，也可以用更多的用户将系统处理能力容量测试出来。</p>
+<p>并发用户数量:</p>
+<p>并发用户多少为好？</p>
+<p>中小企业:5000用户</p>
+<h2 id="错误率"><a href="#错误率" class="headerlink" title="错误率"></a><strong>错误率</strong></h2><h3 id="定义及解释"><a href="#定义及解释" class="headerlink" title="** 定义及解释**"></a>** 定义及解释**</h3><p>错误率指系统在负载情况下，失败交易的概率。错误率＝(失败交易数&#x2F;交易总数)*100%。稳定性较好的系统，其错误率应该由超时引起，即为超时率。</p>
+<h3 id="标准-2"><a href="#标准-2" class="headerlink" title="标准"></a><strong>标准</strong></h3><p>不同系统对错误率的要求不同，但一般不超出千分之六，即成功率不低于99.4%</p>
+<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><h3 id="定义及解释-1"><a href="#定义及解释-1" class="headerlink" title="定义及解释"></a><strong>定义及解释</strong></h3></div></article><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Jmeter/">Jmeter</a><a class="post-meta__tags" href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/08/20/e2e_analysis/"><i class="fa fa-chevron-left">  </i><span>验收测试E2E分析方法</span></a></div><div class="next-post pull-right"><a href="/2020/01/03/05Loop_creation_variable/"><span>Python循环创建变量/规律性命名变量</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="vcomment"></div><script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = 'false' == 'true';
+var verify = 'false' == 'true';
+var record_ip = 'false' == 'true';
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  recordIP:record_ip,
+  appId:'F1Yvbj0NxwrB3DRaljWZOPe9-gzGzoHsz',
+  appKey:'vvI8fXV2CIAJXrex6pBlFHBz',
+  placeholder:'留下您的评论建议吧~',
+  avatar:'wavatar',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang: 'zh-cn'
+})</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2023 By babyfengfjx</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/algolia.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="algolia-search"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
