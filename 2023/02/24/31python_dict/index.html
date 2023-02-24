@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="python中字典的基本用法"><meta name="keywords" content="python,类,字典"><meta name="author" content="babyfengfjx"><meta name="copyright" content="babyfengfjx"><title>python中字典的基本用法 | babyfengfjx'Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"RPHOC0H5T9","apiKey":"723903e5de5899f6cc4ad96fc50931c1","indexName":"hexo_blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">字典基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#clear"><span class="toc-number">1.1.</span> <span class="toc-text">clear()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#copy"><span class="toc-number">1.2.</span> <span class="toc-text">copy()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fromkeys"><span class="toc-number">1.3.</span> <span class="toc-text">fromkeys()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-number">1.4.</span> <span class="toc-text">get()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setdefault"><span class="toc-number">1.5.</span> <span class="toc-text">setdefault()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#items"><span class="toc-number">1.6.</span> <span class="toc-text">items()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keys"><span class="toc-number">1.7.</span> <span class="toc-text">keys()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop"><span class="toc-number">1.8.</span> <span class="toc-text">pop()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#popitem"><span class="toc-number">1.9.</span> <span class="toc-text">popitem()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#update"><span class="toc-number">1.10.</span> <span class="toc-text">update()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#values"><span class="toc-number">1.11.</span> <span class="toc-text">values()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">1.12.</span> <span class="toc-text">切片</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://github.com/babyfengfjx/babyfengfjx.github.io/blob/main/pictures/avatar/avatar.jpg?raw=true"></div><div class="author-info__name text-center">babyfengfjx</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">35</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">37</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">23</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">babyfengfjx'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">python中字典的基本用法</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-02-24</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/python/">python</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="字典基本用法"><a href="#字典基本用法" class="headerlink" title="字典基本用法"></a>字典基本用法</h2><blockquote>
+<p>字典是Python中的一种基本数据结构，用于存储键值对。它有很多实用的方法，下面是一些常用的方法及其用法：</p>
+</blockquote>
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear()"></a>clear()</h3><p><strong>清空字典</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dict</span>.clear()</span><br></pre></td></tr></table></figure>
+
+<h3 id="copy"><a href="#copy" class="headerlink" title="copy()"></a>copy()</h3><p><strong>复制字典</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">new_dict = <span class="built_in">dict</span>.copy()</span><br></pre></td></tr></table></figure>
+
+<h3 id="fromkeys"><a href="#fromkeys" class="headerlink" title="fromkeys()"></a>fromkeys()</h3><p><strong>创建一个新字典，使用指定的键和默认值</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">new_dict = <span class="built_in">dict</span>.fromkeys(keys, default_value)</span><br></pre></td></tr></table></figure>
+
+<p><code>fromkeys()</code> 方法用于创建一个新字典，其中指定的键为该字典中的每个元素的键，并且指定的值为所有键的值。它的语法是：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dict</span>.fromkeys(iterable, value=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>iterable</code> 参数是一个可迭代的对象，它包含了新字典中的所有键；<code>value</code> 参数是新字典中所有键对应的值，如果未提供，则默认为 <code>None</code>。</p>
+<p>这个方法的常见使用场景是，创建一个默认值相同的字典。例如，假设你要记录一本书中每个单词出现的次数，你可以使用以下代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&quot;this is a book about python programming. python is a great language to learn.&quot;</span></span><br><span class="line">words = text.split()</span><br><span class="line">word_counts = <span class="built_in">dict</span>.fromkeys(words, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    word_counts[word] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(word_counts)</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>fromkeys()</code> 方法用于创建一个字典，其中所有的单词作为键，对应的值都是 0。然后，我们遍历文本中的每个单词，并将其出现次数加到字典中对应键的值上。最后，打印出字典中每个单词的出现次数。</p>
+<p>在这个例子中，<code>fromkeys()</code> 方法的作用是快速创建一个具有指定键和默认值的字典，而不需要显式地对每个键进行初始化。</p>
+<h3 id="get"><a href="#get" class="headerlink" title="get()"></a>get()</h3><p><strong>根据给定的键获取相应的值。如果键不存在，则返回指定的默认值（默认为None）</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">value = <span class="built_in">dict</span>.get(key, default=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>key</code>是要获取值的键，<code>default</code>是当指定的键不存在时要返回的默认值。如果指定的键存在，则返回该键对应的值；如果不存在，则返回默认值（如果指定了），否则返回None。</p>
+<p>下面是一个简单的例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">person = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">25</span>, <span class="string">&#x27;gender&#x27;</span>: <span class="string">&#x27;female&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取键&#x27;name&#x27;的值</span></span><br><span class="line">name = person.get(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(name)   <span class="comment"># 输出：&#x27;Alice&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取键&#x27;address&#x27;的值，因为该键不存在，所以返回默认值&#x27;unknown&#x27;</span></span><br><span class="line">address = person.get(<span class="string">&#x27;address&#x27;</span>, <span class="string">&#x27;unknown&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(address)   <span class="comment"># 输出：&#x27;unknown&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>在实际开发中，由于字典中的键可能不存在，<strong>使用get()方法获取值时，可以避免因访问不存在的键而抛出KeyError异常</strong>，从而使代码更加健壮。此外，如果不想在字典中查找某个键时抛出异常，也可以使用<code>dict.setdefault()</code>方法。</p>
+<h3 id="setdefault"><a href="#setdefault" class="headerlink" title="setdefault()"></a>setdefault()</h3><p><strong>根据给定的键获取相应的值。如果键不存在，则将其添加到字典中，并将值设置为指定的默认值（默认为None）</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">value = <span class="built_in">dict</span>.setdefault(key, default=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>具体来说，<code>setdefault()</code> 方法会按照以下步骤操作：</p>
+<ol>
+<li>如果 <code>key</code> 存在于字典中，则返回对应的值；</li>
+<li>如果 <code>key</code> 不存在于字典中，则将 <code>key</code> 和默认值 <code>default</code> 加入到字典中，并返回 <code>default</code>。</li>
+</ol>
+<p>下面是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pythonCopy codemy_dict = &#123;<span class="string">&#x27;apple&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;banana&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;orange&#x27;</span>: <span class="number">4</span>&#125;</span><br><span class="line">count = my_dict.setdefault(<span class="string">&#x27;pear&#x27;</span>, <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(my_dict)  <span class="comment"># &#123;&#x27;apple&#x27;: 2, &#x27;banana&#x27;: 3, &#x27;orange&#x27;: 4, &#x27;pear&#x27;: 0&#125;</span></span><br><span class="line"><span class="built_in">print</span>(count)  <span class="comment"># 0</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们首先创建了一个字典 <code>my_dict</code>，其中包含了三个键值对。然后，我们调用了 <code>setdefault()</code> 方法，并传入了一个键 <code>pear</code> 和一个默认值 <code>0</code>。由于 <code>pear</code> 不存在于字典中，因此 <code>setdefault()</code> 方法将其添加到了字典中，并返回了默认值 <code>0</code>。此时，字典 <code>my_dict</code> 已经被更新，其中包含了四个键值对。</p>
+<p>如果我们再次调用 <code>setdefault()</code> 方法，并传入一个已经存在于字典中的键，例如 <code>&#39;apple&#39;</code>，那么该方法会返回该键对应的值，并不会改变字典的内容。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict = &#123;<span class="string">&#x27;apple&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;banana&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;orange&#x27;</span>: <span class="number">4</span>&#125;</span><br><span class="line">count = my_dict.setdefault(<span class="string">&#x27;pear&#x27;</span>, <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(my_dict)  <span class="comment"># &#123;&#x27;apple&#x27;: 2, &#x27;banana&#x27;: 3, &#x27;orange&#x27;: 4, &#x27;pear&#x27;: 0&#125;</span></span><br><span class="line"><span class="built_in">print</span>(count)  <span class="comment"># 0</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们首先创建了一个字典 <code>my_dict</code>，其中包含了三个键值对。然后，我们调用了 <code>setdefault()</code> 方法，并传入了一个键 <code>pear</code> 和一个默认值 <code>0</code>。由于 <code>pear</code> 不存在于字典中，因此 <code>setdefault()</code> 方法将其添加到了字典中，并返回了默认值 <code>0</code>。此时，字典 <code>my_dict</code> 已经被更新，其中包含了四个键值对。</p>
+<p>如果我们再次调用 <code>setdefault()</code> 方法，并传入一个已经存在于字典中的键，例如 <code>&#39;apple&#39;</code>，那么该方法会返回该键对应的值，并不会改变字典的内容。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict = &#123;<span class="string">&#x27;apple&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;banana&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;orange&#x27;</span>: <span class="number">4</span>&#125;</span><br><span class="line">count = my_dict.setdefault(<span class="string">&#x27;apple&#x27;</span>, <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(my_dict)  <span class="comment"># &#123;&#x27;apple&#x27;: 2, &#x27;banana&#x27;: 3, &#x27;orange&#x27;: 4&#125;</span></span><br><span class="line"><span class="built_in">print</span>(count)  <span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们传入了一个已经存在于字典中的键 <code>apple</code>，因此 <code>setdefault()</code> 方法并不会改变字典的内容，而是直接返回该键对应的值 <code>2</code>。</p>
+<h3 id="items"><a href="#items" class="headerlink" title="items()"></a>items()</h3><p><strong>返回字典中所有键值对的元组列表</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items_list = <span class="built_in">dict</span>.items()</span><br></pre></td></tr></table></figure>
+
+<h3 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h3><p><strong>返回字典中所有键的列表</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">keys_list = <span class="built_in">dict</span>.keys()</span><br></pre></td></tr></table></figure>
+
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><p><strong>根据给定的键删除并返回相应的值。如果键不存在，则返回指定的默认值（默认为None）</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">value = <span class="built_in">dict</span>.pop(key, default=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="popitem"><a href="#popitem" class="headerlink" title="popitem()"></a>popitem()</h3><p><strong>随机删除并返回字典中的一对键值对。如果字典为空，则引发KeyError异常</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">key, value = <span class="built_in">dict</span>.popitem()</span><br></pre></td></tr></table></figure>
+
+<h3 id="update"><a href="#update" class="headerlink" title="update()"></a>update()</h3><p><strong>使用另一个字典中的键值对更新当前字典。如果键已经存在，则更新对应的值；否则，添加新的键值对</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dict</span>.update(other_dict)</span><br></pre></td></tr></table></figure>
+
+<h3 id="values"><a href="#values" class="headerlink" title="values()"></a>values()</h3><p><strong>返回字典中所有值的列表</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">values_list = <span class="built_in">dict</span>.values()</span><br></pre></td></tr></table></figure>
+
+<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>除了上述方法之外，字典还可以使用类似于列表的切片语法来获取子字典，例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sub_dict = <span class="built_in">dict</span>[start:end:step]</span><br></pre></td></tr></table></figure>
+
+<p>其中，start、end和step分别表示切片的起始位置、结束位置和步长。</p>
+<p>字典是无序的键值对集合，不支持像列表和字符串那样的索引操作，但是可以通过切片来获取字典中的一部分内容。具体使用场景如下：</p>
+<ol>
+<li><strong>获取部分键值对</strong></li>
+</ol>
+<p>可以使用切片来获取字典中一部分键值对，切片的起始和结束索引可以是键名，也可以是字典的索引，但要注意切片结束索引不包括在内。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取字典中前三个键值对</span></span><br><span class="line">partial_dict = <span class="built_in">dict</span>(<span class="built_in">list</span>(my_dict.items())[<span class="number">0</span>:<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(partial_dict) <span class="comment"># &#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 2, &#x27;c&#x27;: 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取键名从&#x27;b&#x27;到&#x27;d&#x27;的键值对</span></span><br><span class="line">partial_dict = <span class="built_in">dict</span>(<span class="built_in">list</span>(my_dict.items())[<span class="number">1</span>:<span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(partial_dict) <span class="comment"># &#123;&#x27;b&#x27;: 2, &#x27;c&#x27;: 3, &#x27;d&#x27;: 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>字典分页</strong></li>
+</ol>
+<p>可以使用切片来将字典分页，例如每页显示10个键值对，可以通过切片获取字典的一部分，并将其渲染到页面上。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;f&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;g&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;h&#x27;</span>: <span class="number">8</span>, <span class="string">&#x27;i&#x27;</span>: <span class="number">9</span>, <span class="string">&#x27;j&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;k&#x27;</span>: <span class="number">11</span>, <span class="string">&#x27;l&#x27;</span>: <span class="number">12</span>&#125;</span><br><span class="line"></span><br><span class="line">page_size = <span class="number">10</span> <span class="comment"># 每页显示10个键值对</span></span><br><span class="line">page_number = <span class="number">1</span> <span class="comment"># 显示第1页</span></span><br><span class="line"></span><br><span class="line">start_index = (page_number - <span class="number">1</span>) * page_size</span><br><span class="line">end_index = start_index + page_size</span><br><span class="line"></span><br><span class="line">partial_dict = <span class="built_in">dict</span>(<span class="built_in">list</span>(my_dict.items())[start_index:end_index])</span><br><span class="line"><span class="built_in">print</span>(partial_dict) <span class="comment"># &#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 2, &#x27;c&#x27;: 3, &#x27;d&#x27;: 4, &#x27;e&#x27;: 5, &#x27;f&#x27;: 6, &#x27;g&#x27;: 7, &#x27;h&#x27;: 8, &#x27;i&#x27;: 9, &#x27;j&#x27;: 10&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</div></article><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E7%B1%BB/">类</a><a class="post-meta__tags" href="/tags/%E5%AD%97%E5%85%B8/">字典</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2023/02/23/30class_inherit/"><span>父类中未定义的方法，直接可以在初始化方法调用？</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="vcomment"></div><script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = 'false' == 'true';
+var verify = 'false' == 'true';
+var record_ip = 'false' == 'true';
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  recordIP:record_ip,
+  appId:'F1Yvbj0NxwrB3DRaljWZOPe9-gzGzoHsz',
+  appKey:'vvI8fXV2CIAJXrex6pBlFHBz',
+  placeholder:'留下您的评论建议吧~',
+  avatar:'wavatar',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang: 'zh-cn'
+})</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2023 By babyfengfjx</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/algolia.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="algolia-search"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
