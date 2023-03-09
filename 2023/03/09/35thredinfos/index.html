@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="并发编程科普"><meta name="keywords" content=""><meta name="author" content="babyfengfjx"><meta name="copyright" content="babyfengfjx"><title>并发编程科普 | babyfengfjx'Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"RPHOC0H5T9","apiKey":"723903e5de5899f6cc4ad96fc50931c1","indexName":"hexo_blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%B9%B6%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text">基于线程的并行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock%E9%94%81"><span class="toc-number">1.1.</span> <span class="toc-text">Lock锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">1.2.</span> <span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.3.</span> <span class="toc-text">使用事件实现线程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8with%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.4.</span> <span class="toc-text">使用with语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="toc-number">1.5.</span> <span class="toc-text">使用队列实现线程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-number">1.6.</span> <span class="toc-text">扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%B9%B6%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">基于进程的并行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%9B%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.1.</span> <span class="toc-text">如何使用进程池</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">异步编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Python%E7%9A%84concurrent-futures%E6%A8%A1%E5%9D%97"><span class="toc-number">3.1.</span> <span class="toc-text">使用Python的concurrent.futures模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Asyncio%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%AE%A1%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">使用Asyncio实现事件循环管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Asyncio%E5%A4%84%E7%90%86%E5%8D%8F%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">使用Asyncio处理协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Asyncio%E7%AE%A1%E7%90%86%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.4.</span> <span class="toc-text">使用Asyncio管理任务</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://github.com/babyfengfjx/babyfengfjx.github.io/blob/main/pictures/avatar/avatar.jpg?raw=true"></div><div class="author-info__name text-center">babyfengfjx</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">40</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">39</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">25</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">babyfengfjx'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">并发编程科普</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-03-09</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/python/">python</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/python/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="基于线程的并行"><a href="#基于线程的并行" class="headerlink" title="基于线程的并行"></a>基于线程的并行</h2><p>一个线程主要由3个元素构成：<strong>程序计数器、寄存器与栈</strong></p>
+<ul>
+<li>同一个进程中的线程之间所共享的资源有数据与操作系统资源</li>
+<li>一个线程的执行状态可以分为<strong>就绪、运行中与阻塞</strong></li>
+<li>相比于进程来说，使用线程的好处在于性能方面，进程之间的上下文切换成本要比同一进程中的线程之间的切换成本高很多</li>
+<li>直到调用start（）方法时线程才会开始运行，join（）方法会导致调用线程等待，直到它执行完毕</li>
+</ul>
+<h3 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h3><p>虽然理论上可以平稳运行，但锁不仅会导致严重的死锁情况的出现，对于应用来说还会产生其他负面影响。这是<br>一种保守的做法，它本身经常会引入一些不必要的成本；它还会对代码的可伸缩性及可读性产生影响。此外，锁的使<br>用还会与对多个进程所共享的内存的优先级访问需求产生冲突。最后，从实践的角度来看，使用了锁的应用在查错<br>（调试）时会遇到很多困难。因此，我们需要使用其他方法来确保对共享内存的同步访问并避免竞态条件。</p>
+<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><p>虽然初看起来信号量机制并没有什么明显的问题，不过它可以正常工作的前提是等待与信号操作要在原子块中执<br>行。如果不是这样，或是两个操作中的一个停止了，那就会导致我们不期望的情况出现。<br>假设两个线程同时执行，操作会等待一个信号量，其内部的变量值为1。另外，再假设当第一个线程将信号量的值<br>由1减为0时，控制会进入第二个线程，它会将值由0减为-1，并等待，因为内部变量值变为负数了。这时，控制又回到<br>了第一个线程，信号量的值为负数，因此第一个线程也会等待。<br>因此，尽管信号量可以访问线程，但实际情况却是等待操作没有以原子的形式执行，这就会导致混乱的情况</p>
+<h3 id="使用事件实现线程同步"><a href="#使用事件实现线程同步" class="headerlink" title="使用事件实现线程同步"></a>使用事件实现线程同步</h3><h3 id="使用with语句"><a href="#使用with语句" class="headerlink" title="使用with语句"></a>使用with语句</h3><p>当有两个相关的操作需要对一个代码块成对执行时，with语句的作用就彰显出来了。此外，借助with语句，还可以在需要时精确地分配与释放资源；出于这个原因，with语句又叫作上下文管理器。在线程模块中，acquire（）与release（）方法所提供的全部对象可以用在with语句块中</p>
+<h3 id="使用队列实现线程通信"><a href="#使用队列实现线程通信" class="headerlink" title="使用队列实现线程通信"></a>使用队列实现线程通信</h3><p>队列使用起来很容易，并且使得线程编程变得更加安全，因为它们会对单个线程对资源的所有访问进行过滤，并且支持更加整洁且可读性更棒的设计模式：</p>
+<ul>
+<li>put（）：将一个条目添加到队列中。</li>
+<li>get（）：从队列中删除并返回一个条目</li>
+<li>task_done（）：每次处理一个条目时都会调用该方法</li>
+<li>join（）：这会导致阻塞，直到所有条目都被处理完为止</li>
+</ul>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>我们并未通过增加线程的方式来加快应用的启动时间，而是添加了对并发的支持。比如，创建线程池，然后再重用执行者是非常有益的。这样，我们就可以分割一个大的数据集，并对其不同部分执行相同的函数（生产者-消费者模型）。因此，虽然这并非并发应用的典型情况，但这些测试保持了足够的简单性。对于想要使用纯Python并希望利用多核硬件架构的应用来说，GIL会成为一个障碍吗？没错。虽然线程是一种语言构造，但CPython解释器却是线程与操作系统之间的桥梁。这也正是Jython、IronPython与其他解释器并没有提供GIL的原因所在，因为根本没必要，它并未在解释器中重新实现。</p>
+<h2 id="基于进程的并行"><a href="#基于进程的并行" class="headerlink" title="基于进程的并行"></a>基于进程的并行</h2><ul>
+<li><p>如果不调用p.join（），那么子进程就会空闲下来但不会终止，接下来就必须要手动杀死它。</p>
+</li>
+<li><p>在后台运行进程是一种典型的耗时处理执行模式，它不需要你的介入与干预，当然也可以与其他程序并发执行。 Python的multiprocessing模块通过daemon选项可以实现进程的后台运行。</p>
+</li>
+<li><p>注意，后台进程是不允许创建子进程的。否则，当后台进程的父进程退出时，它会终止，这会导致这个后台进程 的子进程变成游离状态。此外，它们并非UNIX守护进程或服务，它们就是正常的进程，如果非后台进程退出时，它们 就会终止。</p>
+</li>
+<li><p>可以通过terminate（）方法立刻杀死一个进程。此外，还可以通过is_alive（）方法来追踪进程是否存活</p>
+</li>
+</ul>
+<h3 id="如何使用进程池"><a href="#如何使用进程池" class="headerlink" title="如何使用进程池"></a>如何使用进程池</h3><p>multiprocessing库提供了Pool类用于实现简单的并行处理任务。Pool类拥有如下方法：</p>
+<ul>
+<li>apply（）：一直会阻塞，直到结果就绪为止。</li>
+<li>apply_async（）：这是apply（）方法的一个变种，会返回一个结果对象。它是一个异步操作，并不会锁定主线 程，直到所有子类都执行完毕为止。</li>
+<li>map（）：这是内建的map（）函数的并行版本。它会阻塞住，直到结果就绪为止，该方法会将迭代的数据以块 的形式提交给进程池，并作为单独的任务来执行。</li>
+<li>map_async（）：这是map（）方法的一个变种，会返回一个结果对象。如果指定了回调，那么它就是可以调用 的，并且会接收一个参数。当结果就绪时，回调就会使用到它（除非调用失败了）。回调应该立即完成；否则，处理 结果的线程就会被阻塞住。</li>
+</ul>
+<h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><ul>
+<li><p>线性和并行执行模式之外，还有一种被称为异步的模式，它与事件编程（event pro-gramming）一样，对我们 来说至关重要</p>
+</li>
+<li><p>在单处理器系统和多处理器系统中，异步活动的执行模型均可使用一个主控制流来实现。</p>
+</li>
+<li><p>在并发执行的异步模式中，不同的任务在时间线上是相互交错的，而且一切都是在单一控制流（单线程）下进行 的</p>
+</li>
+<li><p>正如你所见，任务（用不同颜色表示）之间彼此交错，但都在同一个线程的控制之下；这意味着当执行某个任务 时，其他任务没在执行</p>
+<p>  <img src="/pictures/35thredinfos/image-20230309143034526.png" alt="image-20230309143034526"></p>
+</li>
+<li><p>多线程编程模式与单线程异步并发模型的一个关键区别在于，前者由操作系统决定任务执行 的时间线，即是否暂停某个线程的活动并开启另一个线程，而后者要求程序员假设某个线程可能被暂停，并随时被另 一个线程取代。</p>
+</li>
+<li><p>程序员可以将任务编写为一系列可以间断式执行的小步骤；因此，如果某个任务需要使用另一个任务的输出，那 么在编写该任务时就在程序中设定必须接受后者的输入</p>
+</li>
+</ul>
+<h3 id="使用Python的concurrent-futures模块"><a href="#使用Python的concurrent-futures模块" class="headerlink" title="使用Python的concurrent.futures模块"></a>使用Python的concurrent.futures模块</h3><p>current.Futures模块提供了Executor类的两个子类，这两个子类分别可以异步式地管理一个线程池和一个进程池。它 们是：</p>
+<ul>
+<li>concurrent.futures.ThreadPoolExecutor(max_workers) </li>
+<li>concurrent.futures.ProcessPoolExecutor(max_workers)</li>
+</ul>
+<p>max_workers参数表示用于异步执行调用的最大worker数量</p>
+<h3 id="使用Asyncio实现事件循环管理"><a href="#使用Asyncio实现事件循环管理" class="headerlink" title="使用Asyncio实现事件循环管理"></a>使用Asyncio实现事件循环管理</h3><p>该模块主要由以下组件构成：</p>
+<ul>
+<li>事件循（event loop）：Asyncio模块支持每个进程拥有一个事件循环。</li>
+<li>协程（coroutines）：这是子例程（subroutine）概念的泛化。另外，协程在执行时可以暂停，以等待外部处理程 序完成（I&#x2F;O中的某个例行程序），外部处理程序结束后则从暂停之处返回。 </li>
+<li>Futures：定义了Future对象，类似代表了尚未完成计算的concurrent.futures模块。</li>
+<li>任务（tasks）：这是Asyncio中的一个子类，用于封装并管理并行模式下的协程</li>
+</ul>
+<h3 id="使用Asyncio处理协程"><a href="#使用Asyncio处理协程" class="headerlink" title="使用Asyncio处理协程"></a>使用Asyncio处理协程</h3><h3 id="使用Asyncio管理任务"><a href="#使用Asyncio管理任务" class="headerlink" title="使用Asyncio管理任务"></a>使用Asyncio管理任务</h3><p>Asyncio的宗旨是处理事件循环中的异步进程和并发执行任务。它还提供了一个叫作asyncio.Task（）的类，用于将 协程封装在任务中。该类的用途在于，支持独立运行的任务与同一个事件循环中的其他任务并发运行。协程被封装进 任务中后，它将该任务与事件循环相连接，并在循环开始时自动运行，因此算是提供了一种自动驱动协程的机制。</p>
+</div></article><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/2023/03/09/threadinfos/"><span></span><i class="fa fa-chevron-right"></i></a></div></nav><div id="vcomment"></div><script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = 'false' == 'true';
+var verify = 'false' == 'true';
+var record_ip = 'false' == 'true';
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  recordIP:record_ip,
+  appId:'F1Yvbj0NxwrB3DRaljWZOPe9-gzGzoHsz',
+  appKey:'vvI8fXV2CIAJXrex6pBlFHBz',
+  placeholder:'留下您的评论建议吧~',
+  avatar:'wavatar',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang: 'zh-cn'
+})</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2023 By babyfengfjx</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/algolia.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="algolia-search"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
